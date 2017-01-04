@@ -18,9 +18,10 @@
     <style name="RaisedButtonDark" parent="Theme.AppCompat.Light">
         <item name="colorButtonNormal">@color/colorPrimaryDark</item>
         !-- Cuando el boton este normal -->
-        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorControlHighlight">@android:color/white</item>
         !-- Cando el boton esta en uso -->
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/button_bg_rounded_corners</item>
 
     </style>
 

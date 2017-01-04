@@ -14,23 +14,25 @@
     <string name="button_registrar">REGISTRARME</string>
     <string name="text_no_account">¿No tienes cuenta?,</string>
     <string name="text_create_account"><u>Crea una aqui</u></string>
-    <string name="error_invalid_email">Ingrese un Email valido</string>
-    <string name="error_invalid_password">Ingrese una Contraseña valida</string>
-    <string name="error_incorrect_password">Contraseña Erronea</string>
+    <string name="error_invalid_email">Ingrese un email valido</string>
+    <string name="error_invalid_password">Ingrese una contraseña valida</string>
+    <string name="error_incorrect_password">Contraseña Incorrecta</string>
     <string name="error_field_required">Este campo es necesario</string>
+    <string name="logo_descrip">logo</string>
 
     <!-- Strings related to registre-->
     <string name="toolbar_titulo">Registro de Usuarios</string>
-    <string name="name">Name</string>
-    <string name="username">User Name</string>
-    <string name="password">Password</string>
+    <string name="name">Nombre</string>
+    <string name="username">Usuario</string>
+    <string name="password">Contraseña</string>
     <string name="email">Email</string>
-    <string name="button_registre">REGISTRO</string>
+    <string name="button_registre">REGISTRARSE</string>
     <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
 
 </resources>

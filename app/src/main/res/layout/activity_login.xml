@@ -23,7 +23,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_logo_promedan"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/logo_descrip"
+                 />
         </RelativeLayout>
         <ScrollView
             android:layout_width="match_parent"
@@ -34,7 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="@dimen/activity_horizontal_margin">
+                android:padding="@dimen/activity_horizontal_margin"
+                tools:ignore="ScrollViewSize">
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -62,10 +65,11 @@
                 <Button
                     android:id="@+id/login"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/button_size"
                     android:text="@string/button_ingresar"
                     android:layout_marginTop="@dimen/top_marginbutton"
-                    android:theme="@style/RaisedButtonDark"/>
+                    style="@style/RaisedButtonDark"
+                    />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -87,7 +91,8 @@
                         android:textStyle="bold"
                         android:textSize="@dimen/text_size_noaccount"
                         android:layout_toRightOf="@+id/NoAccount"
-                        android:layout_marginLeft="@dimen/text_margin"/>
+                        android:layout_marginLeft="@dimen/text_margin"
+                        tools:ignore="RtlHardcoded" />
                 </RelativeLayout>
             </LinearLayout>
         </ScrollView>
