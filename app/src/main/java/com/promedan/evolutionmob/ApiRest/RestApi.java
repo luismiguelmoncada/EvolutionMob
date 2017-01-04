@@ -1,5 +1,7 @@
 package com.promedan.evolutionmob.ApiRest;
 
+import com.promedan.evolutionmob.Model.Usuario;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -18,6 +20,5 @@ public interface RestApi {
 
     @POST("/Retrofit-Prueba/inserttest.php")
     Call<ServerResponse> createUser(@Body Usuario user);
-
 
 }

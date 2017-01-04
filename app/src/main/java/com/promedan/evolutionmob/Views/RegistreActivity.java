@@ -1,18 +1,15 @@
 package com.promedan.evolutionmob.Views;
 
-import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.promedan.evolutionmob.ApiRest.ApiClient;
 import com.promedan.evolutionmob.ApiRest.ServerResponse;
-import com.promedan.evolutionmob.ApiRest.Usuario;
+import com.promedan.evolutionmob.Model.Usuario;
 import com.promedan.evolutionmob.R;
 
 import butterknife.BindView;
@@ -74,11 +71,12 @@ public class RegistreActivity extends AppCompatActivity {
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                Toast.makeText(RegistreActivity.this, "Usuario Ingresado con Exito "+ response.body().getError(), Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistreActivity.this, response.body().getResult(), Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistreActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
             }
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Toast.makeText(RegistreActivity.this,"ERROR : "+ t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistreActivity.this,"Server Error : "+ t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

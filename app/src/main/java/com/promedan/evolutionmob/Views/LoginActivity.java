@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.promedan.evolutionmob.ApiRest.ApiClient;
-import com.promedan.evolutionmob.ApiRest.Usuario;
+import com.promedan.evolutionmob.Model.Usuario;
 import com.promedan.evolutionmob.R;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.promedan.evolutionmob.ApiRest;
+package com.promedan.evolutionmob.Model;
 
 import com.google.gson.annotations.SerializedName;
 
