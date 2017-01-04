@@ -69,45 +69,18 @@ public class RegistreActivity extends AppCompatActivity {
         email = Email.getText().toString();
 
         Usuario user = new Usuario(nombre,nombreusuario,contraseña,email);
-        Call<Usuario> call = ApiClient.get().createUser(user);
+        Call<ServerResponse> call = ApiClient.get().createUser(user);
 
-        call.enqueue(new Callback<Usuario>() {
+        call.enqueue(new Callback<ServerResponse>() {
             @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                Usuario resp = response.body();
-                int statusCode = response.code();
-                Toast.makeText(RegistreActivity.this, "Usuario Ingresado con Exito "+ resp, Toast.LENGTH_LONG).show();
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                Toast.makeText(RegistreActivity.this, "Usuario Ingresado con Exito "+ response.body().getError(), Toast.LENGTH_LONG).show();
             }
-            @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-                Toast.makeText(RegistreActivity.this, "Error " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-/*
-        Usuario user = new Usuario(nombre,nombreusuario,contraseña,email);
-
-         Call<ServerResponse> response = ApiClient.get().operation(user);
-
-        response.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
-
-                ServerResponse resp = response.body();
-                //Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
-                Toast.makeText(RegistreActivity.this, "Error " + resp.getMessage(), Toast.LENGTH_LONG).show();
-            }
-
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-
-
-                Toast.makeText(RegistreActivity.this, "Error " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                //Snackbar.make(getView(), t.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
-
+                Toast.makeText(RegistreActivity.this,"ERROR : "+ t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-*/
+
     }
 }

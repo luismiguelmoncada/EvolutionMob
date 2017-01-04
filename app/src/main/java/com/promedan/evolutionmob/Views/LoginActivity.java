@@ -53,7 +53,10 @@ public class LoginActivity extends AppCompatActivity {
     public void Ingresar(){
         Login();
     }
+
     private void Login() {
+
+        LoginServer();
 
         Email.setError(null);
         Password.setError(null);
@@ -92,31 +95,35 @@ public class LoginActivity extends AppCompatActivity {
             focusView.requestFocus();
         } else {
 
-            Call<List<Usuario>> call = ApiClient.get().getUsers();
-
-            call.enqueue(new Callback<List<Usuario>>() {
-                @Override
-                public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
-                    List<Usuario> users = response.body();
-                   // TextView name = (TextView)findViewById(R.id.textView4);
-                    //TextView email = (TextView)findViewById(R.id.textView5);
-                    for (Usuario user : users) {
-                        Toast.makeText(LoginActivity.this, "OK", Toast.LENGTH_SHORT).show();
-                        //name.setText(user.getName());
-                        //email.setText(user.getEmail());
-                        Toast.makeText(LoginActivity.this, user.getName()+" , "+user.getEmail(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<List<Usuario>> call, Throwable t) {
-                    Log.d("my_tag", "ERROR: " + t.getMessage());
-                    Toast.makeText(LoginActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
 
 
         }
+    }
+
+    private void LoginServer(){
+        Call<List<Usuario>> call = ApiClient.get().getUsers();
+
+        call.enqueue(new Callback<List<Usuario>>() {
+            @Override
+            public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
+                List<Usuario> users = response.body();
+                // TextView name = (TextView)findViewById(R.id.textView4);
+                //TextView email = (TextView)findViewById(R.id.textView5);
+                for (Usuario user : users) {
+                    Toast.makeText(LoginActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                    //name.setText(user.getName());
+                    //email.setText(user.getEmail());
+                    Toast.makeText(LoginActivity.this, user.getName()+" , "+user.getEmail(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Usuario>> call, Throwable t) {
+                Log.d("my_tag", "ERROR: " + t.getMessage());
+                Toast.makeText(LoginActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private boolean isEmailValid(String email) {

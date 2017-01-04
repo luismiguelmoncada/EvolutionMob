@@ -8,7 +8,49 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class ServerResponse {
+    @SerializedName("error")
+    @Expose
+    private String error;
+    @SerializedName("vlink")
+    @Expose
+    private Boolean vlink;
 
+    /**
+     *
+     * @return
+     * The error
+     */
+    public String getError() {
+        return error;
+    }
+
+    /**
+     *
+     * @param error
+     * The error
+     */
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    /**
+     *
+     * @return
+     * The vlink
+     */
+    public Boolean getVlink() {
+        return vlink;
+    }
+
+    /**
+     *
+     * @param vlink
+     * The vlink
+     */
+    public void setVlink(Boolean vlink) {
+        this.vlink = vlink;
+    }
+    /*
     private String result;
     private String message;
     private Usuario user;
@@ -23,5 +65,5 @@ public class ServerResponse {
 
     public Usuario getUser() {
         return user;
-    }
+    }*/
 }

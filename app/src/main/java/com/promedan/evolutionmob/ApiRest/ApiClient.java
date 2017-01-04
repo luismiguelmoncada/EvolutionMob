@@ -3,6 +3,9 @@ package com.promedan.evolutionmob.ApiRest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -23,17 +26,20 @@ public class ApiClient {
 
     private static void setupRestClient() {
 
+        OkHttpClient okClient = new OkHttpClient.Builder()
+                .connectTimeout(5, TimeUnit.SECONDS)
+                .build();
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-                .setLenient()
+                //.setLenient()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okClient)
                 .build();
-
 
         REST_CLIENT = retrofit.create(RestApi.class);
     }
