@@ -48,7 +48,9 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_username"
                         android:textSize="@dimen/text_size_label_login"
-                        android:inputType="textEmailAddress"/>
+                        android:drawableRight="@drawable/ic_user_48"
+                        android:inputType="textEmailAddress"
+                        tools:ignore="RtlHardcoded" />
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
