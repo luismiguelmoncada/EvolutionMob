@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">EvolutionMob</string>
+
+    <!-- Splash Activity Details -->
+    <string name="desc_in_activity_splash">BIENVENIDO</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Strings related to login -->
+    <string name="hint_username">Nombre de Usuario</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="button_ingresar">INGRESAR</string>
+    <string name="button_registrar">REGISTRARME</string>
+    <string name="text_no_account">¿No tienes cuenta?,</string>
+    <string name="text_create_account"><u>Crea una aqui</u></string>
+    <string name="error_invalid_email">Ingrese un Email valido</string>
+    <string name="error_invalid_password">Ingrese una Contraseña valida</string>
+    <string name="error_incorrect_password">Contraseña Erronea</string>
+    <string name="error_field_required">Este campo es necesario</string>
+
+    <!-- Strings related to registre-->
+    <string name="toolbar_titulo">Registro de Usuarios</string>
+    <string name="name">Name</string>
+    <string name="username">User Name</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="button_registre">REGISTRO</string>
+
+</resources>
