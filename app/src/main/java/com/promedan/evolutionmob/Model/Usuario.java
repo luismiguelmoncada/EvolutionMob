@@ -19,6 +19,9 @@ public class Usuario {
     @SerializedName("email")
     private String email;
 
+    public Usuario() {
+
+    }
     public Usuario(String name, String username, String password, String email) {
         this.name = name;
         this.username = username;

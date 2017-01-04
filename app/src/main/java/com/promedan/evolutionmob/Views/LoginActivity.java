@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.promedan.evolutionmob.ApiRest.ApiClient;
+import com.promedan.evolutionmob.ApiRest.ServerResponse;
+import com.promedan.evolutionmob.Model.Constants;
 import com.promedan.evolutionmob.Model.Usuario;
 import com.promedan.evolutionmob.R;
 
@@ -56,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void Login() {
 
-        LoginServer();
+
 
         Email.setError(null);
         Password.setError(null);
@@ -94,13 +96,40 @@ public class LoginActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-
-
-
+            ValidarUsuario(email,password);
         }
     }
 
-    private void LoginServer(){
+    private void ValidarUsuario(String email, String contraseña){
+
+        Usuario usuario=new Usuario();
+        usuario.setEmail(email);
+        usuario.setPassword(contraseña);
+        Call<ServerResponse> call = ApiClient.get().obtenerUsuario(usuario);
+
+        call.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                String message = response.body().getMessage();
+                String result = response.body().getResult();
+                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+
+                if (result.equals(Constants.SUCCESS)){
+                    Intent mainIntent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
+                    LoginActivity.this.startActivity(mainIntent);
+                    LoginActivity.this.finish();
+                }
+            }
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+                Toast.makeText(LoginActivity.this,"Server Error : "+ t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void LoginServerGET(){
+
+        // Ejemplo para uso de get
         Call<List<Usuario>> call = ApiClient.get().getUsers();
 
         call.enqueue(new Callback<List<Usuario>>() {

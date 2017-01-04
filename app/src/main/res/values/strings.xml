@@ -26,5 +26,11 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="button_registre">REGISTRO</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
 </resources>

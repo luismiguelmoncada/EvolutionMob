@@ -18,7 +18,9 @@ public interface RestApi {
     @GET("/Retrofit-Prueba/getData.php")
     Call<List<Usuario>> getUsers();
 
-    @POST("/Retrofit-Prueba/inserttest.php")
-    Call<ServerResponse> createUser(@Body Usuario user);
+    @POST("/Retrofit-Prueba/User_Registration.php")
+    Call<ServerResponse> createUser(@Body Usuario Usuario);
 
+    @POST("/Retrofit-Prueba/User_Login.php")
+    Call<ServerResponse> obtenerUsuario(@Body Usuario Usuario);
 }

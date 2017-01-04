@@ -1,5 +1,6 @@
 package com.promedan.evolutionmob.Views;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +22,7 @@ import retrofit2.Response;
 
 public class RegistreActivity extends AppCompatActivity {
 
-    String nombre,nombreusuario,email,contraseña;
+    String nombre,nombreusuario,email,contraseña,message,result;
 
     @BindView(R.id.editTextName)
     EditText Nombre;
@@ -44,6 +45,7 @@ public class RegistreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registre);
         verToolbar(getResources().getString(R.string.toolbar_titulo),true);
         ButterKnife.bind(this);
+
     }
 
     public  void verToolbar(String titulo,Boolean UpButton){
@@ -65,14 +67,15 @@ public class RegistreActivity extends AppCompatActivity {
         contraseña = Contraseña.getText().toString();
         email = Email.getText().toString();
 
-        Usuario user = new Usuario(nombre,nombreusuario,contraseña,email);
-        Call<ServerResponse> call = ApiClient.get().createUser(user);
+        Usuario usuario = new Usuario(nombre,nombreusuario,contraseña,email);
+        Call<ServerResponse> call = ApiClient.get().createUser(usuario);
 
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                Toast.makeText(RegistreActivity.this, response.body().getResult(), Toast.LENGTH_LONG).show();
-                Toast.makeText(RegistreActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+                message = response.body().getMessage();
+                result = response.body().getResult();
+                Toast.makeText(RegistreActivity.this, message, Toast.LENGTH_LONG).show();
             }
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
