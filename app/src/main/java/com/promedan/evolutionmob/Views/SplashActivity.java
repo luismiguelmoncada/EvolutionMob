@@ -1,11 +1,11 @@
-package com.promedan.evolutionmob;
+package com.promedan.evolutionmob.Views;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.promedan.evolutionmob.Views.LoginActivity;
+import com.promedan.evolutionmob.R;
 
 public class SplashActivity extends AppCompatActivity {
 
