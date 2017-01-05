@@ -3,12 +3,15 @@ package com.promedan.evolutionmob.Views;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.promedan.evolutionmob.ApiRest.ApiClient;
 import com.promedan.evolutionmob.ApiRest.ServerResponse;
+import com.promedan.evolutionmob.Model.Constants;
 import com.promedan.evolutionmob.Model.Usuario;
 import com.promedan.evolutionmob.R;
 
@@ -23,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     String nombre,nombreusuario,email,contraseña,message,result;
 
+    //Se usa la libreria jakewharton:butterknife para injeccion de vistas
     @BindView(R.id.editTextName)
     EditText Nombre;
 
@@ -38,13 +42,13 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.buttonRegister)
     Button BotonRegistro;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         verToolbar(getResources().getString(R.string.toolbar_titulo),true);
         ButterKnife.bind(this);
-
     }
 
     public  void verToolbar(String titulo,Boolean UpButton){
@@ -56,17 +60,63 @@ public class RegisterActivity extends AppCompatActivity {
 
     @OnClick(R.id.buttonRegister)
     public void Registro(){
-        RegistrarUsuario();
+        IngresarUsuarioNuevo();
     }
 
-    private void RegistrarUsuario(){
+    private void IngresarUsuarioNuevo(){
 
-        nombre = Nombre.getText().toString();
-        nombreusuario = NombreUsuario.getText().toString();
-        contraseña = Contraseña.getText().toString();
-        email = Email.getText().toString();
+        Nombre.setError(null);
+        NombreUsuario.setError(null);
+        Email.setError(null);
+        Contraseña.setError(null);
+
+        boolean cancel = false;
+        View focusView = null;
+
+         nombre = Nombre.getText().toString();
+         nombreusuario = NombreUsuario.getText().toString();
+         email = Email.getText().toString();
+         contraseña = Contraseña.getText().toString();
+
+        // Check for a valid input parametres.
+        if (TextUtils.isEmpty(nombre)) {
+            Nombre.setError(getString(R.string.error_field_required));
+            focusView = Nombre;
+            cancel = true;
+        }else if (TextUtils.isEmpty(nombreusuario)) {
+            NombreUsuario.setError(getString(R.string.error_field_required));
+            focusView = NombreUsuario;
+            cancel = true;
+        }else if (TextUtils.isEmpty(email)) {
+            Email.setError(getString(R.string.error_field_required));
+            focusView = Email;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            Email.setError(getString(R.string.error_invalid_email));
+            focusView = Email;
+            cancel = true;
+        } else if (TextUtils.isEmpty(contraseña)) {
+            Contraseña.setError(getString(R.string.error_field_required));
+            focusView = Contraseña;
+            cancel = true;
+        }else if (!isPasswordValid(contraseña)){
+            Contraseña.setError(getString(R.string.error_invalid_password));
+            focusView = Contraseña;
+            cancel = true;
+        }
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            RegistrarUsuario(nombre,nombreusuario,contraseña,email);
+        }
+    }
+
+    private void RegistrarUsuario(String nombre,String nombreusuario,String contraseña,String email){
 
         Usuario usuario = new Usuario(nombre,nombreusuario,contraseña,email);
+        final String emailLog =email;
         Call<ServerResponse> call = ApiClient.get().createUser(usuario);
 
         call.enqueue(new Callback<ServerResponse>() {
@@ -75,6 +125,13 @@ public class RegisterActivity extends AppCompatActivity {
                 message = response.body().getMessage();
                 result = response.body().getResult();
                 Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+
+                if (result.equals(Constants.SUCCESS)){
+                    LoginActivity login = new LoginActivity();
+                    EditText emailLogin = login.retornarEmail();
+                    emailLogin.setText(emailLog);
+                    RegisterActivity.this.finish();
+                }
             }
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
@@ -82,6 +139,16 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() > 4;
     }
 
 }

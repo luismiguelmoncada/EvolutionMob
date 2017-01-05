@@ -27,8 +27,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+
+    static EditText Email; //Para acceder a el desde RegisterActivity @BindView(R.id.email) EditText Email;
+
     //libreria para evitar usar tanto codigo especialmente con los onclic, puedo hacer injeccion de codigo
-    @BindView(R.id.email) EditText Email;
     @BindView(R.id.password) EditText Password;
 
     @BindView(R.id.CreateAccount)
@@ -42,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        Email = (EditText) findViewById(R.id.email);
     }
 
     @OnClick(R.id.CreateAccount)
@@ -49,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         //Toast.makeText(LoginActivity.this, "Prueba libreria JakeWharton", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(i);
+
     }
 
     @OnClick(R.id.login)
@@ -56,9 +60,13 @@ public class LoginActivity extends AppCompatActivity {
         Login();
     }
 
+
+    public EditText retornarEmail()    {
+
+        return this.Email;
+    }
+
     private void Login() {
-
-
 
         Email.setError(null);
         Password.setError(null);
@@ -117,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (result.equals(Constants.SUCCESS)){
                     Intent mainIntent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                     LoginActivity.this.startActivity(mainIntent);
-                    LoginActivity.this.finish();
+                    //LoginActivity.this.finish();
                 }
             }
             @Override
