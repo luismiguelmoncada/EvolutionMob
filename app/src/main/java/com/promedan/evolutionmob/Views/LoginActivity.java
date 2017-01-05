@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.CreateAccount)
     public void NuevaCuenta(){
         //Toast.makeText(LoginActivity.this, "Prueba libreria JakeWharton", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(LoginActivity.this, RegistreActivity.class);
+        Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(i);
     }
 

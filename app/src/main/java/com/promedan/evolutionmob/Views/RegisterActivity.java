@@ -1,6 +1,5 @@
 package com.promedan.evolutionmob.Views;
 
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegistreActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     String nombre,nombreusuario,email,contraseña,message,result;
 
@@ -42,14 +41,14 @@ public class RegistreActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registre);
+        setContentView(R.layout.activity_register);
         verToolbar(getResources().getString(R.string.toolbar_titulo),true);
         ButterKnife.bind(this);
 
     }
 
     public  void verToolbar(String titulo,Boolean UpButton){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar6);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(titulo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(UpButton);
@@ -75,13 +74,14 @@ public class RegistreActivity extends AppCompatActivity {
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 message = response.body().getMessage();
                 result = response.body().getResult();
-                Toast.makeText(RegistreActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
             }
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Toast.makeText(RegistreActivity.this,"Server Error : "+ t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this,"Server Error : "+ t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
     }
+
 }
